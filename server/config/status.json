@@ -1,0 +1,5 @@
+{
+    "unauthorized": 401,
+    "gatewayTimeout": 504,
+    "ok": 200
+}
