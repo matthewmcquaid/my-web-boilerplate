@@ -28,3 +28,4 @@ npm TEST
 - add support for requests to external API
 - add JWT support and authorization verifyToken in authorizeMiddleware.js
 - add React front-end with login and authorized pages
+- refactor API request to use async try/catch

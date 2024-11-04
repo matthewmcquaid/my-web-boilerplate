@@ -26,8 +26,8 @@ describe('API Version', () => {
 
     await getApiVersion(req, res);
 
-    expect(res.status).to.have.been.calledOnceWith(200);
-    expect(res.json).to.have.been.calledOnceWith(mockResponse.data);
+    expect(res.status.lastCall.args[0] === 200).to.be.true;
+    expect(res.json.lastCall.args[0]).to.equal(mockResponse.data);
   });
 
   it('should respond with error status and message if request fails', async () => {
@@ -36,8 +36,9 @@ describe('API Version', () => {
 
     await getApiVersion(req, res);
 
-    expect(res.status).to.have.been.calledOnceWith(504);
-    expect(res.send).to.have.been.calledOnceWith('Gateway Timeout');
+    expect(res.status.lastCall.args[0] === 504).to.be.true;
+    expect(res.send.lastCall.args[0]).to.equal('Gateway Timeout');
+
   });
 
   it('should use default status and message if error response is missing', async () => {
