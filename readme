@@ -1,0 +1,30 @@
+# Title
+
+My Web Boilerplate - basic nodeJS server side render of pug client view with server side API support
+
+## Installation
+
+- Designed for NodeJS v20.16.0 and npm v10.8.1
+- nvm instructions <https://github.com/nvm-sh/nvm>
+
+## Starup
+
+```bash
+npm i
+npm start
+```
+
+## Test Coverage
+
+```bash
+npm TEST
+```
+
+## TODO
+
+- fix broken tests
+- add tests coverage
+- add redis caching
+- add support for requests to external API
+- add JWT support and authorization verifyToken in authorizeMiddleware.js
+- add React front-end with login and authorized pages
