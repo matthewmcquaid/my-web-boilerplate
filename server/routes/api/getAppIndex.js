@@ -1,9 +1,8 @@
+import config from '../../config/app.js';
 
-'use strict';
+export default (request, response) => {
+  console.log('app index');
 
-const config = require('../../config/app');
-
-module.exports = (request, response) => {
   return response.status(config.status.ok)
     .send(config.server.name);
 };

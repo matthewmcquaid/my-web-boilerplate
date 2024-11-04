@@ -1,4 +1,7 @@
-'use strict';
+import getAppIndex from './api/getAppIndex.js';
+import getApiVersion from './api/getApiVersion.js';
 
-exports.getAppIndex = require('./api/getAppIndex');
-exports.getApiVersion = require('./api/getApiVersion');
+export default { 
+    getAppIndex, 
+    getApiVersion 
+};

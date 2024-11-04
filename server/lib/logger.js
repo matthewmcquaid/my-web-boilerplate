@@ -1,5 +1,4 @@
-
-const winston = require('winston');
+import winston from 'winston';
 
 const { combine, timestamp, json } = winston.format;
 
@@ -9,9 +8,10 @@ const logger = winston.createLogger({
   transports: [new winston.transports.Console()],
 });
 
-module.exports = logger;
-module.exports.stream = {
-  write: (message, encoding) => {
-    logger.info(message);
+export default logger;
+
+logger.stream = {
+  write: (message) => {
+    logger.info(message.trim()); 
   }
 };

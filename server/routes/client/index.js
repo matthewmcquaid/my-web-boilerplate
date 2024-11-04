@@ -1,19 +1,19 @@
+import path from 'path';
+import config from '../../config/app.js';
+import applicationVersion from '../../../package.json' assert { type: 'json' };
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url); 
+const __dirname = path.dirname(__filename); 
 
-'use strict';
+const staticDir = path.resolve(__dirname, '../../../../client/dist');
 
-const path = require('path'),
-  applicationVersion = require('../../../package.json'),
-  config = require('../../config/app');
-
-exports.staticDir = path.resolve(__dirname, '../../../../client/dist');
-
-exports.index = (request, response) => {
-
-  var labelData = request.label ? request.label : {
+const index = (request, response) => {
+  const labelData = request.label || {
     name: 'demo1',
     applicationText: 'MJM Demo',
     title: 'Web Boilerplate'
   };
+  console.log('loading client');
 
   response.status(config.status.ok).render('index', {
     applicationVersion: applicationVersion.version,
@@ -21,7 +21,5 @@ exports.index = (request, response) => {
     labelData: JSON.stringify(labelData),
     pageTitle: labelData.title
   });
-
 };
-
-
+export default { index, staticDir};

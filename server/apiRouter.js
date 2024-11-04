@@ -1,17 +1,13 @@
+import { Router } from 'express';
+import routes from './routes/index.js';
+import bodyParser from 'body-parser';
+import validateRequest from './middleware/authorizeMiddleware.js';
 
+const apiRouter = Router();
 
-'use strict';
+apiRouter.use(bodyParser.json());
+apiRouter.use(bodyParser.urlencoded({ extended: true }));
+apiRouter.get('/', routes.getAppIndex);
+apiRouter.get('/version', validateRequest, routes.getApiVersion);
 
-const router = require('express').Router(),
-  routes = require('./routes'),
-  bodyParser = require('body-parser'),
-  validateRequest = require('./middleware/validateRequest');
-
-router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({extended: true}));
-router.get('/', routes.getAppIndex);
-
-
-router.get('/version', validateRequest, routes.getApiVersion);
-
-module.exports = router;
+export default apiRouter;

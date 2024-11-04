@@ -1,11 +1,9 @@
-'use strict';
+import express from 'express';
+import client from './routes/client/index.js';
 
-const express = require('express'),
-  client = require('./routes/client/index'),
-  router = express.Router();
+const clientRouter = express.Router();
 
-router.use(express.static(client.staticDir));
+clientRouter.use(express.static(client.staticDir));
+clientRouter.get('*', client.index);
 
-router.get('*', client.index);
-
-module.exports = router;
+export default clientRouter;

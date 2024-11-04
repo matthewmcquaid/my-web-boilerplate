@@ -1,11 +1,11 @@
+import config from '../../config/app.js';
+import { apiRequest } from '../../lib/requestHelper.js';
 
-'use strict';
+export default async (request, response) => {
 
-const config = require('../../config/app'),
-  requestHelper = require('../../lib/requestHelper');
-
-module.exports = (request, response) => {
-  return requestHelper.apiRequest(
+  console.log('v1/api/version');
+  
+  return apiRequest(
     'GET',
     '/v1/api/version',
     null,
@@ -14,13 +14,12 @@ module.exports = (request, response) => {
     null,
     null
   ).then((res) => {
-    response
-      .status(res.status)
-      .json(res.data);
-  }).catch((err) => {
-    response
-      .status(err.status || config.status.gatewayTimeout)
-      .send(err.response && err.response.text || config.error.noResponse);
-  });
-
+      response
+        .status(res.status)
+        .json(res.data);
+    }).catch((err) => {
+      response
+        .status(err.status || config.status.gatewayTimeout)
+        .send(err.response && err.response.text || config.error.noResponse);
+    });
 };

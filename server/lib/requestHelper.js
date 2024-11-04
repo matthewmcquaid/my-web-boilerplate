@@ -1,45 +1,33 @@
+import config from '../config/app.js';
+import logger from './logger.js';
 
-'use strict';
-
-var config = require('../config/app'),
-  logger = require('./logger');
-
-var buildQueryParametersString = (parameters, requestType) => {
-
-  var query = '';
+export const buildQueryParametersString = (parameters, requestType) => {
+  let query = '';
 
   if (requestType.toLowerCase() === 'get' && parameters) {
-    query += '?' + Object.keys(parameters).map(function (key) {
-        return key + '=' + encodeURIComponent(parameters[key]);
-      }).join('&');
+    query += '?' + Object.keys(parameters).map((key) => 
+      `${key}=${encodeURIComponent(parameters[key])}`
+    ).join('&');
   }
 
   return query;
 };
 
-var buildUrl = (endpoint, parameters, requestType)=>  {
-
-  var apiProtocol = config.apiProtocol;
-  var apiHostname = config.apiHostname;
-  var apiPort = config.apiPort;
-
-  return apiProtocol + '//' + apiHostname + ':' + apiPort + endpoint + buildQueryParametersString(parameters, requestType);
-};
-
-var apiRequest = (requestType, endpoint, queryParameters, parameters, username, password, authRequired) => {
-  return new Promise((resolve, reject) => {
-
-    var responseData = {testing: 'good'};
-
+export const buildUrl = (endpoint, parameters, requestType) => {
+  const { apiProtocol, apiHostname, apiPort } = config;
   
-
-    resolve({data: responseData, status: 200});
-       
-
-  })
-
+  return `${apiProtocol}//${apiHostname}:${apiPort}${endpoint}${buildQueryParametersString(parameters, requestType)}`;
 };
 
-exports.buildQueryParametersString = buildQueryParametersString;
-exports.apiRequest = apiRequest;
-exports.buildUrl = buildUrl;
+export const apiRequest = (requestType, endpoint, queryParameters, parameters, username, password, authRequired) => {
+  return new Promise((resolve) => {
+    const responseData = { testing: 'good' };
+
+    resolve({ data: responseData, status: 200 });
+  });
+};
+
+
+export default { 
+  apiRequest 
+};
