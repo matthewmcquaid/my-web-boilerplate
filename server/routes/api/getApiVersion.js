@@ -1,11 +1,11 @@
 import config from '../../config/app.js';
-import { apiRequest } from '../../lib/requestHelper.js';
+import requestHelper from '../../lib/requestHelper.js';
 
 export default async (request, response) => {
 
   console.log('v1/api/version');
   
-  return apiRequest(
+  return requestHelper.apiRequest(
     'GET',
     '/v1/api/version',
     null,
