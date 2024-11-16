@@ -4,11 +4,14 @@ import path from 'path';
 import config from '../../../config/app.js';
 import applicationVersion from '../../../../package.json' assert { type: 'json' };
 import clientModule from '../../../routes/client/index.js';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url); 
+const __dirname = path.dirname(__filename); 
 
 describe('Client Module', () => {
   describe('staticDir', () => {
     it('should resolve to the correct static directory path', () => {
-      const expectedPath = path.resolve(__dirname, '../../../../client/dist');
+      const expectedPath = path.resolve(__dirname, '../../../../../client/dist');
       expect(clientModule.staticDir).to.equal(expectedPath);
     });
   });
