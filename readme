@@ -6,6 +6,7 @@ My Web Boilerplate - basic nodeJS server side render of pug client view with ser
 
 - Designed for NodeJS v20.16.0 and npm v10.8.1
 - nvm instructions <https://github.com/nvm-sh/nvm>
+- install redis to use cachemanager <https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/install-redis-on-mac-os/>
 
 ## Starup
 
@@ -17,14 +18,13 @@ npm start
 ## Test Coverage
 
 ```bash
-npm TEST
+npm test
 ```
 
 ## TODO
 
 - fix broken tests
 - add tests coverage
-- add redis caching
 - add support for requests to external API
 - add JWT support and authorization verifyToken in authorizeMiddleware.js
 - add React front-end with login and authorized pages
